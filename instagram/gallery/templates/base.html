@@ -8,13 +8,11 @@
 
     {% block styles %}
     {% bootstrap_css %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% endblock %}
 
 </head>
-<body style="background-color: black;">
-    <div class="jumbotron" style="text-align:center">
-        <h1>INSTAGRAM</h1>
-    </div>
+<body>
     {% include "navbar.html" %}
     {% block content %}{% endblock %}
     {% block scripts %}
