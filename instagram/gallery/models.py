@@ -18,4 +18,7 @@ class Editor(models.Model):
 
     def __str__(self):
         return self.editor_name
-    
+        
+    # save function
+    def save_editor(self):
+        self.save()
