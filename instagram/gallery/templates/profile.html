@@ -1,37 +1,18 @@
-{% load bootstrap3 %}
-{% load static%}
-<!DOCTYPE html>
-<html>
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Instagram.</title>
-
-    {% block styles %}
-    {% bootstrap_css %}
-    <link rel="stylesheet" href="{% static 'css/base.css' %}">
-    {% endblock %}
-
-</head>
-<body>
-    {% include "base.html" %}
-    {% block content %}
-    <div class="container" style="padding:70px;">
+{% extends 'base.html' %}
+{% block content %}
+{{block.super}}
+    <div class="container" style="padding:70px;padding-top:40px;margin-top:84px;background-color:rgba(245, 245, 245, 0.918);border-radius:50px;">
         <img class="img-responsive" src="/static/css/profile.png"style="border-radius:118px;width:190px;height:190px;">
-    <div class="container" style="float: left;">
+    <div class="container" style="float: left;color:black;">
         <h1>_illest.niccur</h1>
         <h2>Murimi🔥</h2>
         <h2>www.qooh.me/illest.niccur</h2>
     </div>
     <div class="row">
-        <img src="/static/css/profile.png">
-        <img src="/static/profile.png">
-        <img src="/static/heart.png">
+        <img style="width:330px;height:330px;" src="/static/css/profile.png">
+        <img style="width:330px;height:330px;" src="/static/profile.png">
+        <img style="width:330px;height:330px;" src="/static/heart.png">
     </div>
     </div>
-    {% endblock %}
-    {% block scripts %}
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-     {% bootstrap_javascript %}
-    {%endblock%}
-</body>
-</html>
+{% endblock %}
+
