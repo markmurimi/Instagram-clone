@@ -3,4 +3,7 @@ from django.http  import HttpResponse
 
 # Create your views here.
 def welcome(request):
-    return render(request,'base.html')
+    return render(request,'welcome.html')
+
+def profile(request):
+    return render(request, 'profile.html')
