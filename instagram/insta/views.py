@@ -2,9 +2,10 @@ from django.shortcuts import render
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from .models import Post
 from .forms import NewsLetterForm
-
+from django.contrib.auth.decorators import login_required.
 
 # Create your views here.
+@login_required(login_url='/accounts/login/')
 def welcome(request):
     if request.method == 'POST':
         form = NewsLetterForm(request.POST)
