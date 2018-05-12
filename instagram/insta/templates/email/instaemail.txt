@@ -1,0 +1,2 @@
+Hello {{name}}
+ welcome to my instagram clone feel free to explore the desired images thank you.

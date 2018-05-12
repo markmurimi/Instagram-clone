@@ -77,3 +77,7 @@ class Profile(models.Model):
     def search_by_username(cls, search_term):
         profile = cls.objects.filter(name__icontains=search_term)
         return profile
+
+class NewsLetterRecipients(models.Model):
+    name = models.CharField(max_length = 30)
+    email = models.EmailField()

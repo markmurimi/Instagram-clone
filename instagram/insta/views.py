@@ -1,10 +1,24 @@
 from django.shortcuts import render
-from django.http  import HttpResponse
+from django.http import HttpResponse, Http404, HttpResponseRedirect
 from .models import Post
+from .forms import NewsLetterForm
+
 
 # Create your views here.
 def welcome(request):
-    return render(request,'welcome.html')
+    if request.method == 'POST':
+        form = NewsLetterForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['your_name']
+            email = form.cleaned_data['email']
+            recipient = NewsLetterRecipients(name = name,email =email)
+            recipient.save()
+            send_welcome_email(name,email)
+
+            HttpResponseRedirect('welcome')  
+    else:
+        form = NewsLetterForm()
+    return render(request,'welcome.html',{"letterForm":form})
 
 def profile(request):
     return render(request, 'profile.html')

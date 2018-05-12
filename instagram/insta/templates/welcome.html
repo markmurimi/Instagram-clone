@@ -1,11 +1,14 @@
-{%extends 'base.html'%}
+{% load bootstrap3 %}
 {% block content %}
-{{block.super}}
-<body style="background-color:#242426;background-attachment: fixed;">
-<div class="well" style="background-color:white;margin-left:10%;margin-right:35%;opacity:0.9;margin-top:6%;" >
-    <h3 style="padding-left:5px;padding-right:20px;margin-top:-10px;margin-bottom:-13px;font-weight:bolder;"><img style="width:60px;height:60px;border-radius:118px" src="/static/css/profile.png">  _illest.niccur</h3>
-    <hr style="background-color: black;">
-    <img class="img-responsive"style="width:900px;height:600px;margin-top:-7px;" src="/static/css/profile.png">
-</div> 
+
+<!-- Looping through news end   -->
+<div class="container-fluid">
+
+        <form  action="{%url 'allImages'%}" method="post">
+          {%csrf_token%}
+      
+          {% bootstrap_form letterForm layout='inline' %}
+          <input type="submit" value="login">
+        </form>
 </body>
 {% endblock %}
