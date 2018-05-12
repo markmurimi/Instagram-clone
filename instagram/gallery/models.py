@@ -12,13 +12,13 @@ class Editor(models.Model):
     username = models.CharField(max_length =10, unique=True)
     editor_name = models.CharField(max_length =30)
     email = models.EmailField()
-    password = forms.CharField(widget=forms.PasswordInput)
+    password = models.CharField(max_length =30, unique=True)
     profile_photo = models.ImageField()
     user_bio = models.TextField()
 
     def __str__(self):
         return self.editor_name
-        
+
     # save function
     def save_editor(self):
         self.save()
