@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from .models import Post
-from .forms import NewsLetterForm
-from django.contrib.auth.decorators import login_required.
+from .forms import NewsLetterForm, NewPostForm
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 @login_required(login_url='/accounts/login/')
@@ -27,3 +27,19 @@ def profile(request):
 def all_images(request):
     images = Post.get_posts()
     return render(request, 'all_images.html', {"images": images})
+
+@login_required(login_url='/accounts/login/')
+def new_post(request):
+    current_user = request.current_user
+    if request.method == 'POST':
+        form = NewPostForm(request.POST, request.FILES)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.editor = current_user
+            post.save()
+    else:
+        form = NewPostForm()
+    return render(request, 'new_post.html', {"form":form})
+
+def home(request):
+    return render(request, "registration/home.html")
