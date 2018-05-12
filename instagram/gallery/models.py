@@ -12,7 +12,6 @@ class Editor(models.Model):
     username = models.CharField(max_length =10, unique=True)
     editor_name = models.CharField(max_length =30)
     email = models.EmailField()
-    password = models.CharField(max_length =30, unique=True)
     profile_photo = models.ImageField()
     user_bio = models.TextField()
 
