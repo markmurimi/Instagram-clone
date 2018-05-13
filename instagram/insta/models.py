@@ -25,6 +25,7 @@ class Post(models.Model):
     post_caption = models.TextField()
     profile = models.ForeignKey('Profile')
     username = models.CharField(max_length =30, unique = True)
+    photo_id = models.CharField(max_length=30)
 
     def __str__(self):
         return self.post_name
@@ -48,13 +49,18 @@ class Post(models.Model):
         return images
 
     @classmethod
-    def get_image_by_id(cls, id):
+    def search_by_username(cls,search_term):
+        images = cls.objects.filter(username__icontains=search_term)
+        return images
+
+    @classmethod
+    def get_image(cls, photo_id):
         '''
         Method that loopps through the class and pick an anticipated id
         Returns:
             selected_image : desired image
         '''
-        selected_image = Post.objects.filter_by(id=id)
+        selected_image = Post.objects.filter_by(id=photo_id)
         return selected_image
         
 
@@ -73,11 +79,6 @@ class Profile(models.Model):
     def delete_profile(self):
         ''' Method to delete a profile from the database'''
         self.delete()
-
-    @classmethod
-    def search_by_username(cls, search_term):
-        profile = cls.objects.filter(name__icontains=search_term)
-        return profile
 
 class NewsLetterRecipients(models.Model):
     name = models.CharField(max_length = 30)

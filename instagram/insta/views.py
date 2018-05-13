@@ -43,3 +43,28 @@ def new_post(request):
 
 def home(request):
     return render(request, "registration/home.html")
+
+def image_details(request, photo_id):
+    photo = Post.objects.get(id=photo_id)
+    return render(request, 'details.html', {'photo': photo})
+
+
+def post(request,photo_id):
+    try:
+        post = Post.objects.get(id = photo_id)
+    except DoesNotExist:
+        raise Http404()
+    return render(request,"all_images.html", {"post":post})
+
+def search_results(request):
+
+    if 'post' in request.GET and request.GET["post"]:
+        search_term = request.GET.get("post")
+        searched_post = Post.search_by_username(search_term)
+        message = f"{search_term}"
+
+        return render(request, 'search.html',{"message":message,"posts": searched_post})
+
+    else:
+        message = "You haven't searched for any term"
+        return render(request, 'search.html',{"message":message})
