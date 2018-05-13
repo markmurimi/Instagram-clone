@@ -4,6 +4,9 @@ This is a clone to the instagram app where a user gets to post his or her own im
 ## Getting Started
 Locate my GitHub Repository or follow this link [repo](https://github.com/markmurimi/Instagram-clone) and clone it to your local machine.
 
+## How To Use The App.
+Click on the heroku link to the app displayed on the repositories description section. Create an account through the Sign Up form then log in to the main Instagram page and enjoy exploring the various features.
+
 ## Running the app
 You run the app in your app folder on the terminal by running the following command:
 * $ Python3.6 manage.py runserver.
