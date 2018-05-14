@@ -21,7 +21,7 @@ class Editor(models.Model):
 
 class Post(models.Model):
     post_name = models.CharField(max_length = 30)
-    post = models.ImageField(upload_to='Posts/')
+    post = models.ImageField(upload_to='posts/')
     post_caption = models.TextField()
     profile = models.ForeignKey('Profile')
     username = models.CharField(max_length =30, unique = True)
@@ -66,8 +66,9 @@ class Post(models.Model):
 
 class Profile(models.Model):
     username = models.CharField(max_length =30, unique= True)
-    profile_pic = models.ImageField(upload_to='Profiles/')
+    profile_pic = models.ImageField(upload_to='profiles/')
     bio = models.TextField()
+    profile_id = models.CharField(max_length =30)
 
     def __str__(self):
         return self.username
