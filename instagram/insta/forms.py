@@ -1,5 +1,5 @@
 from django import forms
-from .models import Post,Profile
+from .models import Post,Profile, Comment
 
 class NewsLetterForm(forms.Form):
     your_name = forms.CharField(label='First Name',max_length=30)
@@ -25,4 +25,12 @@ class ImagePostForm(forms.ModelForm):
     '''
     class Meta:
         model = Post
-        fields = ['post', 'post_name', 'post_caption', 'username']
+        fields = ['post', 'post_name', 'post_caption', 'username', 'profile']
+
+class CommentForm(forms.ModelForm):
+    '''
+    class that creates the comment form
+    '''
+    class Meta:
+        model = Comment
+        fields = ['comment']

@@ -21,8 +21,8 @@ def welcome(request):
         form = NewsLetterForm()
     return render(request,'welcome.html',{"letterForm":form})
 
-def profile(request):
-
+def profile(request, profile_id):
+    profile = Profile.objects.get(profile_id = profile_id)
     return render(request, 'profile.html', {"profile":profile})
 
 def all_images(request):
