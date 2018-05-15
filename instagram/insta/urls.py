@@ -11,7 +11,10 @@ urlpatterns=[
     url(r'^new/post$', views.new_post, name='new-post'),
     url(r'^allImages/search/', views.search, name='search'),
     url(r'^details/(?P<photo_id>[0-9]+)/$', views.image_details, name='image_details'),
-    url(r'^follow/(\d{1})/$',views.follow,name="follow"),
+    url(r'^allImages/follow/(\d{1})/$',views.follow,name="follow"),
+    url(r'^explore/',views.explore, name='explore'),
+    url(r'^update/profile', views.create_profile, name="createProfile"),
+
 
 ]
 if settings.DEBUG:

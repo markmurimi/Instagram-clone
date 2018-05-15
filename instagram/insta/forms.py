@@ -1,5 +1,5 @@
 from django import forms
-from .models import Post
+from .models import Post,Profile
 
 class NewsLetterForm(forms.Form):
     your_name = forms.CharField(label='First Name',max_length=30)
@@ -10,3 +10,19 @@ class NewPostForm(forms.ModelForm):
     post = forms.ImageField(label='Image')
     username = forms.CharField( label='Username', max_length =30, )
     model = Post
+
+class ProfileForm(forms.ModelForm):
+    '''
+    classs that creates profile update form
+    '''
+    class Meta:
+        model = Profile
+        fields = ['profile_pic', 'bio', 'user', 'profile_id']
+
+class ImagePostForm(forms.ModelForm):
+    '''
+    Class to create a form for an authenticated user to create Post
+    '''
+    class Meta:
+        model = Post
+        fields = ['post', 'post_name', 'post_caption', 'username']

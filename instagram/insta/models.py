@@ -1,5 +1,7 @@
 from django.db import models
 from tinymce.models import HTMLField
+from django.contrib.auth.models import User
+
 
 # Create your models here.
 class Editor(models.Model):
@@ -26,7 +28,10 @@ class Post(models.Model):
     profile = models.ForeignKey('Profile')
     username = models.CharField(max_length =30, unique = True)
     photo_id = models.CharField(max_length=30)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
+
+    
     def __str__(self):
         return self.post_name
 
@@ -44,7 +49,7 @@ class Post(models.Model):
         Method that gets all image posts from the database
         Returns:
             get_posts : list of image post objects from the database
-        '''
+        ''' 
         images = Post.objects.all()
         return images
 
@@ -62,13 +67,14 @@ class Post(models.Model):
         '''
         selected_image = Post.objects.filter_by(id=photo_id)
         return selected_image
-        
 
 class Profile(models.Model):
     username = models.CharField(max_length =30, unique= True)
     profile_pic = models.ImageField(upload_to='profiles/')
     bio = models.TextField()
-    profile_id = models.CharField(max_length =30)
+    profile_id = models.CharField(max_length = 30)
+    picture = models.ImageField(upload_to= 'profiles/')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.username

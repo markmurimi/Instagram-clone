@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body style="color:white;">
-<nav class="navbar navbar-inverse  navbar-fixed-top"style="padding-bottom:3%;background-color:black;padding-left:0%;padding-right:6%;attachment:fixed;">
-  <div style=padding-left:15%; class="navbar-header">
+<nav class="navbar navbar-inverse  navbar-fixed-top"style="padding-bottom:3%;background-color:black;padding-left:0%;padding-right:-20 %;attachment:fixed;">
+  <div style=padding-left:21.6%; class="navbar-header">
       <a class="navbar-brand" href="{% url 'allImages' %}" ><img class="img-responsive"  src="/static/instagram.png" style="width:240px;height:60px;"></a>
 
   <div class="col-sm-4 col-md-4 navbar-center">
@@ -21,17 +21,28 @@
             </div>
           </div>
 
-        </form>
+        </form>                                                   
       </div>
-      <a class="navbar-brand"  ><img class="img-responsive"  src="/static/explore.png" style="width:40px;height:40px;border-radius:11px;"></a>
+      <a class="navbar-brand" href="{% url 'explore' %}" ><img class="img-responsive"  src="/static/explore.png" style="width:40px;height:40px;border-radius:11px;"></a>
       <a class="navbar-brand"  ><img class="img-responsive"  src="/static/heart.png" style="width:40px;height:40px;border-radius:8px;"></a>
-      <a class="navbar-brand" href="{% url 'profile'%}" ><img class="img-responsive"  src="/static/profile.png" style="width:40px;height:40px;border-radius:8px;"></a>
+      <a class="navbar-brand" href="{% url 'profile'%}" ><img class="img-responsive"  src="/static/profile.png" style="width:40px;height:40px;border-radius:8px;">{{user.username}}
+    </a>
     </div>
+    {% if user.is_authenticated %}
+
       <!--The search form above-->
-    <div style="font-size:20px;margin-top:-21px;" class="col-sm-6 col-md-6">
+    <div style="font-size:16px;margin-top:-21px;" class="col-sm-6 col-md-6">
         <a style="color:white;font-style: italic;font-family: sans-serif"href="/accounts/login">Logout</a>
         <a style="color:white;font-style: italic;font-family: sans-serif"href="/accounts/password/change">Change Password</a>
-    </div>    
+        <a style="color:white;font-style: italic;font-family: sans-serif"href="/update/profile/">Edit Profile</a>
+        <a style="color:white;font-style: italic;font-family: sans-serif"href="/">New Post</a>
+    </div> 
+    {% else %}
+    <div style="font-size:20px;margin-top:-21px;" class="col-sm-6 col-md-6">
+        <a style="color:white;font-style: italic;font-family: sans-serif"href="/accounts/login">Log In</a>
+      </div> 
+    {% endif %}
+
 </nav>
 <div class="empty"style="padding:0.7%; background-color:white;"></div>
 </body>

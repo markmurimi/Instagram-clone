@@ -1,7 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse, Http404, HttpResponseRedirect
-from .models import Post
-from .forms import NewsLetterForm, NewPostForm
+from .models import Post,Profile
+from .forms import NewsLetterForm, NewPostForm, ProfileForm, ImagePostForm
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -22,7 +22,8 @@ def welcome(request):
     return render(request,'welcome.html',{"letterForm":form})
 
 def profile(request):
-    return render(request, 'profile.html')
+
+    return render(request, 'profile.html', {"profile":profile})
 
 def all_images(request):
     images = Post.get_posts()
@@ -66,9 +67,64 @@ def search(request):
         return render(request, 'search.html',{"message":message,"posts": searched_post})
 
     else:
-        message = "You haven't searched for any term"
+        message = "You haven't searche/d for any term"
         return render(request, 'search.html',{"message":message})
 
 def follow(request, profile_id):
-    follow_profile = Profile.objects.get(id=profile_id)
-    return render(request, 'follower.html', {"follow_profile":follow_profile})
+    profile = Profile.objects.get(profile_id = profile_id)
+    return render(request, 'follower.html', {"profile":profile})
+
+def explore(request):
+    images = Post.get_posts()
+    return render(request, 'explore.html', {"images":images})
+
+@login_required(login_url='/accounts/login')
+def create_profile(request):
+    '''
+    View function to create and update the profile of the user
+    '''
+    current_user = request.user
+
+    profiles = Profile.objects.filter(user=current_user).count()
+
+    if request.method == 'POST':
+
+        form = ProfileForm(request.POST, request.FILES)
+
+        if form.is_valid:
+
+            if profiles == 0:
+                k = form.save(commit=False)
+                k.user = current_user
+                k.save()
+                return redirect(profile)
+            else:
+                record = Profile.objects.filter(user=current_user)
+                record.delete()
+                k = form.save(commit=False)
+                k.user = current_user
+                k.save()
+                return redirect(profile)
+    else:
+        form = ProfileForm()
+    return render(request, 'update-profile.html', {"form": form})
+
+@login_required(login_url='/accounts/login')
+def new_post(request):
+    '''
+    View function to display a form for creating a post to a logged in authenticated user
+    '''
+    current_user = request.user
+
+    if request.method == 'POST':
+
+        form = ImagePostForm(request.POST, request.FILES)
+
+        if form.is_valid:
+            post = form.save(commit=False)
+            post.user = current_user
+            post.save()
+            return redirect(profile)
+    else:
+        form = ImagePostForm()
+    return render(request, 'new-post.html', {"form": form})

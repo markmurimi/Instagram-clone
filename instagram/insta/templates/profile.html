@@ -2,11 +2,10 @@
 {% block content %}
 {{block.super}}
 <div class="well"style="background-color:white;margin-left:10%;margin-right:35%;opacity:0.9;margin-top:6%" >
-    <h1>You havent created a user profile yet.</h1>
-    <h3 style="padding-left:5px;padding-right:20px;margin-top:-10px;margin-bottom:-13px;font-weight:bolder;"><img style="width:60px;height:60px;border-radius:118px" src="{{images_item.profile_pic.url}}">{{images_item.username}}</h3>
+    <h3 style="padding-left:5px;padding-right:20px;margin-top:-10px;margin-bottom:-13px;font-weight:bolder;"><img style="width:60px;height:60px;border-radius:118px" src="{{profile.profile_pic.url}}">{{profile.username}}</h3>
     <hr style="background-color: black;">
-    <a style="color:black;font-size: 20px;"href="details/" ><img class="img-responsive"style="width:900px;height:600px;margin-top:-7px;" src="{{images_item.post.url}}"></a>
-    <p>{{images_item.bio}}</p>
+    <a style="color:black;font-size: 20px;"href="details/" ><img class="img-responsive"style="width:900px;height:600px;margin-top:-7px;" src="{{profile.post.url}}"></a>
+    <p>{{profile.bio}}</p>
       </div>
 {% endblock %}
 

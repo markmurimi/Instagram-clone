@@ -3,9 +3,12 @@
 {{block.super}}
 <body style="background-color:#242426;background-attachment: fixed;">
         <div class="well" style="background-color:white;margin-left:10%;margin-right:35%;opacity:0.9;margin-top:6%;" >
-                <h3 style="padding-left:5px;padding-right:20px;margin-top:-10px;margin-bottom:-13px;font-weight:bolder;"><img style="width:60px;height:60px;border-radius:118px" src="{{profile_item.profile_pic.url}}" alt="">profile_item.username</h3>
+                <h3 style="padding-left:5px;padding-right:20px;margin-top:-10px;margin-bottom:-13px;font-weight:bolder;"><img style="width:60px;height:60px;border-radius:118px" src="{{profile.profile_pic.url}}">{{profile.username}}</h3>
                 <hr style="background-color: black;">
-                <img class="img-responsive"style="width:900px;height:600px;margin-top:-7px;" src="{{images_item.post.url}}" alt="">
-            </div>
+                <h2 style="text-decoration: underline;">Bio</h2>
+                <h3>{{profile.bio}}</h3>
+                <h2 style="text-decoration: underline;">Posts.</h2>
+                <a style="color:black;font-size: 20px;"href="details/{{images_item.photo_id}}/" ><img class="img-responsive"style="width:900px;height:600px;margin-top:-7px;" src="{{profile.picture.url}}"></a>
 </body>
+
 {% endblock %}

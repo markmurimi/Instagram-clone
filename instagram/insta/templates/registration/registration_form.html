@@ -11,11 +11,11 @@
 
         <div class="panel-heading">
             <img class="img-responsive"  src="/static/instaa.png" style="width:150px;height:40px;margin-left:230px;">
-          <h3 class="text-center">Sign Up</h3>
+            <h3 class="text-center">Sign Up</h3>
         </div>
         <div class="panel-body">
 
-          <form  action="{% url 'allImages' %}" method="post">
+          <form  action="/accounts/register/" method="post">
             {% csrf_token %}
             {% bootstrap_form form layout='inline'%}
             <div class="form-group">
