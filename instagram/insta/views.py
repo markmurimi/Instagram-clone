@@ -29,18 +29,7 @@ def all_images(request):
     images = Post.get_posts()
     return render(request, 'all_images.html', {"images": images})
 
-@login_required(login_url='/accounts/login/')
-def new_post(request):
-    current_user = request.current_user
-    if request.method == 'POST':
-        form = NewPostForm(request.POST, request.FILES)
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.editor = current_user
-            post.save()
-    else:
-        form = NewPostForm()
-    return render(request, 'new_post.html', {"form":form})
+
 
 def home(request):
     return render(request, "registration/home.html")
