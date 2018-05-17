@@ -15,6 +15,7 @@ urlpatterns=[
     url(r'^allImages/follow/(\d{1})/$',views.follow,name="follow"),
     url(r'^explore/',views.explore, name='explore'),
     url(r'^update/profile', views.create_profile, name="createProfile"),
+    url(r'^comment/', views.new_comment, name='Comment'),
 
 
 ]

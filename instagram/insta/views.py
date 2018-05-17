@@ -21,8 +21,9 @@ def welcome(request):
         form = NewsLetterForm()
     return render(request,'welcome.html',{"letterForm":form})
 
-def profile(request, profile_id):
-    profile = Profile.objects.get(profile_id = profile_id)
+def profile(request):
+    profile = Profile.objects.get(user = request.user)
+    print(profile)
     return render(request, 'profile.html', {"profile":profile})
 
 def all_images(request):
@@ -117,3 +118,18 @@ def new_post(request):
     else:
         form = ImagePostForm()
     return render(request, 'new-post.html', {"form": form})
+
+def new_comment(request, photo_id):
+    current_image = Post.objects.get(photo_id= photo_id)
+    current_user = request.user
+    if request.method == 'POST':
+        form = CommentForm(request.POST, request.FILES)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.user = current_user
+            comment.post = current_image
+            comment.save()
+        return redirect(AllImages, current_image.id)
+    else:
+        form = CommentForm()
+    return render(request, 'new-comment.html', {"form": form, "current_image": current_image})
